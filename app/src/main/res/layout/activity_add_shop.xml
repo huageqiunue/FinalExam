@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvsid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="商品信息:"
+        android:textSize="32dp" />
+
+    <EditText
+        android:id="@+id/shop_name"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tvsid"
+        android:hint="商品名称"></EditText>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shop_name"></TextView>
+
+    <EditText
+        android:id="@+id/shop_price"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tvName"
+        android:hint="商品价格"></EditText>
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shop_price"
+        android:text="商品描述信息" />
+
+    <EditText
+        android:id="@+id/shop_describe"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/tvPhone"
+        android:hint="请输入描述文字" />
+
+    <Button
+        android:id="@+id/upload_shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shop_describe"
+        android:text="上传商品" />
+</RelativeLayout>

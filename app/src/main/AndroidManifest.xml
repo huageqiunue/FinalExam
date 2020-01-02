@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.finalexam">
+<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".my_action_b"></activity>
+        <activity android:name=".show_goods_business" />
+        <activity android:name=".show_goods_p" />
+        <activity android:name=".join_actions" />
+        <activity android:name=".buy_goods" />
+        <activity android:name=".my_action" />
+        <activity android:name=".add_action" />
+        <activity android:name=".add_shop" />
+        <activity android:name=".show_message" />
+        <activity android:name=".show_scan" />
+        <activity android:name=".Businessinfo" />
+        <activity android:name=".Userinfo" />
+        <activity android:name=".register" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+    </application>
+
+</manifest>

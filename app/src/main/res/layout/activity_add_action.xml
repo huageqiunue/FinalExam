@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/action"
+        android:layout_width="wrap_content"
+        android:layout_height="87dp"
+        android:text="活动信息:"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/action_name"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/action"
+        android:hint="活动名称"></EditText>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/action_name"
+        android:textStyle="bold"></TextView>
+
+    <EditText
+        android:id="@+id/action_package"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/tvName"
+        android:hint="活动红包"></EditText>
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/action_package"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/action_describe"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/tvPhone"
+        android:hint="活动介绍" />
+
+    <TextView
+        android:id="@+id/nouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/action_describe"
+        android:text="日期信息（格式如2017 08 01）"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/action_data"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/action_describe"
+        android:hint="日期" />
+
+    <Button
+        android:id="@+id/upload_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/action_data"
+        android:text="创建活动" />
+</RelativeLayout>
