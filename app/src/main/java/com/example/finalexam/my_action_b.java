@@ -31,6 +31,7 @@ public class my_action_b extends AppCompatActivity {
         String active_name;
         String describe;
         int date;
+        String place;
         String user;
         StringBuffer sb=new StringBuffer();
         SQLiteDatabase db=dbHelper.getWritableDatabase();
@@ -40,16 +41,18 @@ public class my_action_b extends AppCompatActivity {
          String transaction="create table active"+
                 "(id integer primary key autoincrement,publisher_name text,active_name text,active_award int,describe text,date text)";
          */
-            cursor = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe", "date"}, "publisher_name=?", new String[]{name}, null, null, null, null);
+            cursor = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe", "date","place"}, "publisher_name=?", new String[]{name}, null, null, null, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 System.out.println("有了");
                     active_name = cursor.getString(cursor.getColumnIndex("active_name"));
                     describe = cursor.getString(cursor.getColumnIndex("describe"));
                     date = cursor.getInt(cursor.getColumnIndex("date"));
+                    place=cursor.getString(cursor.getColumnIndex("place"));
                     sb.append("活動名稱：" + active_name + "\n");
                     sb.append("活動時間：" + date + "\n");
-                    sb.append("活動詳情：" + describe + "\n\n");
+                    sb.append("活動詳情：" + describe + "\n");
+                    sb.append("活動地點：" + place + "\n\n");
                     sb.append("以下是成員信息：\n");
                     System.out.println("ok now");
                         cursor1 = db.query("action_member", new String[]{"id","username","active_name"}, "active_name=?", new String[]{active_name}, null, null, null);
@@ -64,9 +67,11 @@ public class my_action_b extends AppCompatActivity {
                             active_name = cursor.getString(cursor.getColumnIndex("active_name"));
                             describe = cursor.getString(cursor.getColumnIndex("describe"));
                             date = cursor.getInt(cursor.getColumnIndex("date"));
+                            place = cursor.getString(cursor.getColumnIndex("place"));
                             sb.append("活動名稱：" + active_name + "\n");
                             sb.append("活動時間：" + date + "\n");
                             sb.append("活動詳情：" + describe + "\n\n");
+                            sb.append("活動地點為：" + place + "\n\n");
                             sb.append("以下是成員信息：\n");
                             System.out.println("ok now");
                             cursor1 = db.query("action_member", new String[]{"id","username","active_name"}, "active_name=?", new String[]{active_name}, null, null, null);

@@ -6,6 +6,16 @@ public class Actions {
     private int action_package;
     private String action_describe;
     private String time;
+    private String place;
+
+    public Actions(String action_business, String action_name, int action_package, String action_describe, String time, String place) {
+        this.action_business = action_business;
+        this.action_name = action_name;
+        this.action_package = action_package;
+        this.action_describe = action_describe;
+        this.time = time;
+        this.place = place;
+    }
 
     public Actions(String action_business, String action_name, int action_package, String action_describe, String time) {
         this.action_business = action_business;
@@ -24,6 +34,14 @@ public class Actions {
                 ", action_describe='" + action_describe + '\'' +
                 ", time='" + time + '\'' +
                 '}';
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getAction_business() {

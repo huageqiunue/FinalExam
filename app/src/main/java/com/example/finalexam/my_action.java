@@ -52,7 +52,7 @@ public class my_action extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(my_action.this, "Click item" + position, Toast.LENGTH_SHORT).show();
                 Actions p = personList.get(position);
-                new AlertDialog.Builder(my_action.this).setTitle("活動信息").setMessage(p.getAction_describe())
+                new AlertDialog.Builder(my_action.this).setTitle("活動信息").setMessage(p.getAction_describe()+"\n活動地點："+p.getPlace())
                         .setPositiveButton("關閉" ,new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -188,7 +188,7 @@ public class my_action extends AppCompatActivity {
             cursor.moveToFirst();
              active_name_get = cursor.getString(cursor.getColumnIndex("active_name"));
              username_get = cursor.getString(cursor.getColumnIndex("username"));
-            Cursor cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
+            Cursor cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date","place"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
             if (cursor1 != null && cursor1.getCount() > 0) {
                 cursor1.moveToFirst();
                 String publisher_name = cursor1.getString(cursor1.getColumnIndex("publisher_name"));
@@ -196,12 +196,13 @@ public class my_action extends AppCompatActivity {
                 int active_award = cursor1.getInt(cursor1.getColumnIndex("active_award"));
                 String describe = cursor1.getString(cursor1.getColumnIndex("describe"));
                 String date = cursor1.getString(cursor1.getColumnIndex("date"));
-                Actions actions = new Actions(publisher_name, active_name, active_award, describe, date);
+                String place=cursor1.getString(cursor1.getColumnIndex("place"));
+                Actions actions = new Actions(publisher_name, active_name, active_award, describe, date,place);
                 personList.add(actions);
              while (cursor.moveToNext()){
                  active_name_get = cursor.getString(cursor.getColumnIndex("active_name"));
                  username_get = cursor.getString(cursor.getColumnIndex("username"));
-                  cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
+                  cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date","place"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
                  if (cursor1 != null && cursor1.getCount() > 0) {
                      cursor1.moveToFirst();
                       publisher_name = cursor1.getString(cursor1.getColumnIndex("publisher_name"));
@@ -209,7 +210,8 @@ public class my_action extends AppCompatActivity {
                       active_award = cursor1.getInt(cursor1.getColumnIndex("active_award"));
                       describe = cursor1.getString(cursor1.getColumnIndex("describe"));
                       date = cursor1.getString(cursor1.getColumnIndex("date"));
-                      actions = new Actions(publisher_name, active_name, active_award, describe, date);
+                      place=cursor1.getString(cursor1.getColumnIndex("place"));
+                      actions = new Actions(publisher_name, active_name, active_award, describe, date,place);
                      personList.add(actions);
              }
         }

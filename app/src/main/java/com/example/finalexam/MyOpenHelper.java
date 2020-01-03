@@ -15,13 +15,10 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     private static final String name = "/mnt/sdcard/temp/database.db"; //数据库路径及名称
     public MyOpenHelper(Context context) {
         //创建数据库
-        super(context,  context.getExternalFilesDir(null).getAbsolutePath() + "/" +"final.db", null, 1);
-//        super(context,  "final.db", null, 1);
+//        super(context,  context.getExternalFilesDir(null).getAbsolutePath() + "/" +"final.db", null, 1);
+        super(context,  "fix.db", null, 1);
         // TODO Auto-generated constructor stub
         System.out.println("MyOpenHelper");
-
-
-
     }
 
     @Override
@@ -36,14 +33,14 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         //商家表
         String BusinessInfo_table = "create table Businesstable" +
                 "(id integer primary key autoincrement, username text," +
-                "password text,email text,cash int default 500)";
+                "password text,email text,cash int default 10000)";
         //交易信息表
         String information_table="create table information"+
                 "(id integer primary key autoincrement ,myself text,yourself text"+
                 ",paycash int)";
         //活動列表
         String transaction="create table active"+
-                "(id integer primary key autoincrement,publisher_name text,active_name text,active_award int,describe text,date text)";
+                "(id integer primary key autoincrement,publisher_name text,active_name text,active_award int,describe text,date text,place text)";
         //商品表
         String goods="create table goodslist"+
                 "(id integer primary key autoincrement,publisher_name text,goodsname text,goodsprice int,describe text)";

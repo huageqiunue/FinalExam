@@ -56,7 +56,7 @@ public class join_actions extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(join_actions.this, "Click item" + position, Toast.LENGTH_SHORT).show();
                 Actions p = personList.get(position);
-                new AlertDialog.Builder(join_actions.this).setTitle("活動信息").setMessage(p.getAction_describe())
+                new AlertDialog.Builder(join_actions.this).setTitle("活動信息").setMessage(p.getAction_describe()+"\n活動地點："+p.getPlace())
                         .setPositiveButton("關閉", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -181,7 +181,6 @@ public class join_actions extends AppCompatActivity {
             contentValues.put("active_name", personList.get(position).getAction_name());
             db.insert("action_member", null, contentValues);
             Toast.makeText(join_actions.this, "已經加入活動，請準時參加", Toast.LENGTH_SHORT).show();
-            personList.remove(position);
         } else {
             Toast.makeText(join_actions.this, "對方的錢不足，活動無法參加", Toast.LENGTH_SHORT).show();
         }
@@ -211,7 +210,8 @@ public class join_actions extends AppCompatActivity {
             int active_award = cursor.getInt(3);
             String describe = cursor.getString(4);
             String date = cursor.getString(5);
-            Actions person = new Actions(publisher_name, active_name, active_award, describe, date);
+            String place = cursor.getString(6);
+            Actions person = new Actions(publisher_name, active_name, active_award, describe, date,place);
             personList.add(person);
         }
     }

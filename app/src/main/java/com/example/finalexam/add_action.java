@@ -15,6 +15,7 @@ public class add_action extends AppCompatActivity {
     private EditText action_package;
     private EditText action_describe;
     private EditText action_data;
+    private  EditText action_place;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class add_action extends AppCompatActivity {
         action_package=(EditText)findViewById(R.id.action_package);
         action_describe=(EditText)findViewById(R.id.action_describe);
         action_data=(EditText)findViewById(R.id.action_data);
+        action_place=(EditText)findViewById(R.id.place);
         findViewById(R.id.upload_action).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +45,7 @@ public class add_action extends AppCompatActivity {
         values.put("active_award", action_package.getText().toString());
         values.put("describe", action_describe.getText().toString());
         values.put("date", action_data.getText().toString());
+        values.put("place", action_place.getText().toString());
         db.insert("active", null, values);
         db.close();
         System.out.println("插入成功");
