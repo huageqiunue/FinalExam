@@ -44,14 +44,14 @@
                 android:gravity="center"
                 android:text="注册账号："
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
             <EditText
                 android:id="@+id/edit_register"
                 android:layout_width="220dp"
                 android:layout_height="40dp"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
         <ImageView
             android:layout_width="300dp"
@@ -69,7 +69,7 @@
                 android:gravity="center"
                 android:text="输入密码："
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_setpassword"
@@ -98,7 +98,7 @@
                 android:gravity="center"
                 android:text="輸入郵箱："
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_email"

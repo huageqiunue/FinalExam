@@ -8,7 +8,18 @@
     android:gravity="center"
     android:background="@drawable/login"
     tools:context="com.example.finalexam.LoginActivity">
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="25dp">
+        <CheckBox
+            android:id="@+id/Business"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="商家登錄"
+            android:textColor="@color/black"/>
 
+    </LinearLayout>
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -97,18 +108,7 @@
             android:background="@drawable/layout_border"/>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="300dp"
-        android:layout_height="25dp">
-        <CheckBox
-            android:id="@+id/Business"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="商家登錄"
-            android:textColor="@color/black"/>
 
-    </LinearLayout>
 
 
 </LinearLayout>

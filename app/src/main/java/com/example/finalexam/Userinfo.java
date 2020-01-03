@@ -12,6 +12,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -167,9 +168,9 @@ public class Userinfo extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     System.out.println("yes");
-                    alertDialog.setMessage("你確定要進行交易嗎");
-                    alertDialog.setTitle("提示");
-                    alertDialog.show();
+//                    alertDialog.setMessage("你確定要進行交易嗎");
+//                    alertDialog.setTitle("提示");
+//                    alertDialog.show();
                     exchange(other);
                 }
             });
@@ -179,9 +180,9 @@ public class Userinfo extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-//            alertDialog.setMessage("你確定要進行交易嗎");
-//            alertDialog.setTitle("提示");
-//            alertDialog.show();
+            alertDialog.setMessage("你確定要進行交易嗎");
+            alertDialog.setTitle("提示");
+            alertDialog.show();
             if (result != null) {
                 if (result.getContents() == null) {
                     Toast.makeText(this, "取消扫描", Toast.LENGTH_LONG).show();
@@ -236,5 +237,15 @@ public class Userinfo extends AppCompatActivity {
         values3.put("paycash", 100);
         db.insert("information", null, values3);
         db.close();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // 按下BACK，同时没有重复
+            finish();
+            Intent intent = new Intent(Userinfo.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
