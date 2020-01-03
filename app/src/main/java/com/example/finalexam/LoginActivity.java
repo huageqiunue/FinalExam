@@ -96,13 +96,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("username", edit_account.getText().toString());
                 intent.putExtra("type","商家");
                 intent.putExtra("cash",500);
-                start(intent);
+                startActivityForResult(intent,99);
             }else {
                 Intent intent = new Intent(LoginActivity.this, Userinfo.class);
                 intent.putExtra("username", edit_account.getText().toString());
                 intent.putExtra("type","用戶");
                 intent.putExtra("cash",0);
-                startActivity(intent);
+                startActivityForResult(intent,99);
             }
         } else {
             Toast.makeText(this, "账户或密码错误，请重新输入！！", Toast.LENGTH_SHORT).show();

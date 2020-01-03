@@ -1,5 +1,6 @@
 package com.example.finalexam;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
@@ -165,10 +166,13 @@ SQLiteDatabase db=dbHelper.getWritableDatabase();
         }
     };
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        onCreate(null);
-//    }
-    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 99) {
+            finish();
+            Intent intent = new Intent(Businessinfo.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
 }

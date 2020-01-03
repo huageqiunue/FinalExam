@@ -158,8 +158,7 @@ public class Userinfo extends AppCompatActivity {
     //掃描后返回觸發的事件
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode!=1){
-
+        if (requestCode!=1&requestCode!=99){
             // 获取解析结果
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
             final String other = result.getContents();
@@ -191,8 +190,12 @@ public class Userinfo extends AppCompatActivity {
             } else {
                 super.onActivityResult(requestCode, resultCode, data);
             }
-        }else {
+        }else if (requestCode==1){
             obtainNotice();
+        }else if (requestCode==99){
+            finish();
+            Intent intent=new Intent(Userinfo.this,LoginActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -233,10 +236,4 @@ public class Userinfo extends AppCompatActivity {
         db.insert("information", null, values3);
         db.close();
     }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        onCreate(null);
-//    }
 }

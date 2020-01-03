@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/images2"
     tools:context=".show_goods_business">
 <TextView
     android:id="@+id/show_goods_busin"
