@@ -162,14 +162,15 @@ public class Userinfo extends AppCompatActivity {
             // 获取解析结果
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
             final String other = result.getContents();
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     System.out.println("yes");
+                    alertDialog.setMessage("你確定要進行交易嗎");
+                    alertDialog.setTitle("提示");
+                    alertDialog.show();
                     exchange(other);
-
-
                 }
             });
             alertDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -178,9 +179,9 @@ public class Userinfo extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-            alertDialog.setMessage("你確定要進行交易嗎");
-            alertDialog.setTitle("提示");
-            alertDialog.show();
+//            alertDialog.setMessage("你確定要進行交易嗎");
+//            alertDialog.setTitle("提示");
+//            alertDialog.show();
             if (result != null) {
                 if (result.getContents() == null) {
                     Toast.makeText(this, "取消扫描", Toast.LENGTH_LONG).show();
