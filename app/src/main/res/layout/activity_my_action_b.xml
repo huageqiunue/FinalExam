@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="vertical"
     tools:context=".my_action_b">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textSize="30dp"
     android:id="@+id/member"
+    android:scrollbars="vertical"
+    android:fadeScrollbars="false"
     android:text="這裏是我的活動頁面"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

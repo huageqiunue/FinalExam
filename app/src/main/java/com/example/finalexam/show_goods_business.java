@@ -27,12 +27,13 @@ public class show_goods_business extends AppCompatActivity {
         String buyer;
         String goodsname;
         int goodsprice;
+        String time;
         StringBuffer sb=new StringBuffer();
         SQLiteDatabase db=mOpenHelper.getWritableDatabase();
         Cursor cursor;
         sb.append("信  息  記  錄\n");
             try {
-                cursor = db.query("goods_message", new String[]{"buyer","you","goodsname","goodsprice"}, "you = ?", new String[]{name}, null, null, null, null);
+                cursor = db.query("goods_message", new String[]{"buyer","you","goodsname","goodsprice","date"}, "you = ?", new String[]{name}, null, null, null, null);
             /*
             取出信息（可能有些錯誤）
              */
@@ -41,7 +42,8 @@ public class show_goods_business extends AppCompatActivity {
                         buyer = cursor.getString(cursor.getColumnIndex("buyer"));
                         goodsname=cursor.getString(cursor.getColumnIndex("goodsname"));
                         goodsprice = cursor.getInt(cursor.getColumnIndex("goodsprice"));
-                        sb.append(buyer+" 買了你的 "+goodsname+" ，價格爲 "+goodsprice+"\n");
+                        time = cursor.getString(cursor.getColumnIndex("date"));
+                        sb.append(buyer+" 在"+time+"買了你的商品 "+goodsname+" ，價格爲 "+goodsprice+"\n");
                     }
                 }else if (cursor!=null){
                     cursor.close();

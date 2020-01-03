@@ -28,7 +28,7 @@ public class show_scan extends AppCompatActivity {
         BarcodeEncoder encoder = new BarcodeEncoder();
         try {
             Bitmap bit = encoder.encodeBitmap(name, BarcodeFormat.QR_CODE,
-                    250, 250);
+                    250, 270);
             image_view.setImageBitmap(bit);
         } catch (WriterException e) {
             e.printStackTrace();

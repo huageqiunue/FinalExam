@@ -6,9 +6,11 @@
     <TextView
         android:id="@+id/act_name_p"
         android:layout_width="76dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:text="名字"
-        android:textSize="30sp" />
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,18 +27,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="發佈者："
-                android:textSize="25sp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="獎勵:"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="時間:"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
-                android:textSize="25sp"
+                android:textSize="20dp"
 
                 />
 
@@ -58,14 +60,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="package"
-                android:textSize="25sp"
+                android:textSize="20dp"
                 />
             <TextView
                 android:id="@+id/act_time_p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="time"
-                android:textSize="25sp"
+                android:textSize="20dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -77,7 +79,7 @@
             <Button
                 android:id="@+id/action_del"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:focusable="false"
                 android:text="取消"
                 android:textSize="30sp" />

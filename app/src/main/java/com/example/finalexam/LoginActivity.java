@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("username", edit_account.getText().toString());
                 intent.putExtra("type","商家");
                 intent.putExtra("cash",500);
-                startActivity(intent);
+                start(intent);
             }else {
                 Intent intent = new Intent(LoginActivity.this, Userinfo.class);
                 intent.putExtra("username", edit_account.getText().toString());

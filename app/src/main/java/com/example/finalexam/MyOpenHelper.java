@@ -49,10 +49,10 @@ public class MyOpenHelper extends SQLiteOpenHelper {
                 "(id integer primary key autoincrement,publisher_name text,goodsname text,goodsprice int,describe text)";
         //我的商品
         String my_goods="create table my_goods"+
-                "(id integer primary key autoincrement,username text,publisher_name text,goodsname text,goodsprice int,describe text)";
+                "(id integer primary key autoincrement,username text,publisher_name text,goodsname text,goodsprice int,describe text,date text)";
         //我的賣出商品
         String goods_message="create table goods_message"+
-                "(id integer primary key autoincrement,buyer text,you text,goodsname text,goodsprice int)";
+                "(id integer primary key autoincrement,buyer text,you text,goodsname text,goodsprice int,date text)";
         //活動信息表
         String action_message="create table action_message"+
                 "(id integer primary key autoincrement,publisher_name text,active_name text,active_award int,describe text,date text)";

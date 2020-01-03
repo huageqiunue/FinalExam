@@ -2,11 +2,30 @@ package com.example.finalexam;
 
 import android.content.Intent;
 
+import java.util.Date;
+
 public class Goods {
     private String Goods_business;
     private String Goods_name;
     private int Goods_price;
     private String Goods_describe;
+    private String data;
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Goods(String goods_business, String goods_name, int goods_price, String goods_describe, String data) {
+        Goods_business = goods_business;
+        Goods_name = goods_name;
+        Goods_price = goods_price;
+        Goods_describe = goods_describe;
+        this.data = data;
+    }
 
     public Goods(String goods_business, String goods_name, int goods_price, String goods_describe) {
         Goods_business = goods_business;

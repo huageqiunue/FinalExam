@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /*
         String transaction="create table active"+
                 "(id integer primary key autoincrement,publisher_name text,active_name text,active_award int,describe text,date text)";
@@ -32,7 +33,7 @@ public class join_actions extends AppCompatActivity {
     MyOpenHelper mOpenHelper;
     SQLiteDatabase db;
     MyAdapter myAdapter;
-    static Boolean isclicked=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class join_actions extends AppCompatActivity {
         // 查询数据
         Query();
         // 创建MyAdapter实例
-        myAdapter = new  MyAdapter(join_actions.this);
+        myAdapter = new MyAdapter(join_actions.this);
         // 向listview中添加Adapter
         lv.setAdapter(myAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,10 +57,10 @@ public class join_actions extends AppCompatActivity {
                 Toast.makeText(join_actions.this, "Click item" + position, Toast.LENGTH_SHORT).show();
                 Actions p = personList.get(position);
                 new AlertDialog.Builder(join_actions.this).setTitle("活動信息").setMessage(p.getAction_describe())
-                        .setPositiveButton("關閉" ,new DialogInterface.OnClickListener() {
+                        .setPositiveButton("關閉", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finish();
+                                dialog.cancel();
                             }
                         }).show();
             }
@@ -107,7 +108,7 @@ public class join_actions extends AppCompatActivity {
                         .findViewById(R.id.act_name);
                 viewHolder.txt_package = (TextView) convertView
                         .findViewById(R.id.act_package);
-                viewHolder.txt_time= (TextView) convertView
+                viewHolder.txt_time = (TextView) convertView
                         .findViewById(R.id.act_time);
                 viewHolder.mButton = (Button) convertView.findViewById(R.id.goods_add_button);
                 convertView.setTag(viewHolder);
@@ -117,25 +118,17 @@ public class join_actions extends AppCompatActivity {
             //向TextView中插入数据
             viewHolder.txt_publish.setText(p.getAction_business());
             viewHolder.txt_name.setText(p.getAction_name());
-            viewHolder.txt_package.setText(p.getAction_package()+"");
+            viewHolder.txt_package.setText(p.getAction_package() + "");
             viewHolder.txt_time.setText(p.getTime());
+                viewHolder.mButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //my_goods 數據存儲
+                        join(position);
+                        myAdapter.notifyDataSetChanged();
+                    }
+                });
 
-            if (!isclicked){
-                viewHolder.mButton.setText("不可修改");
-                viewHolder.mButton.setEnabled(false);
-            }else {
-                viewHolder.mButton.setText("添加活動");
-                viewHolder.mButton.setEnabled(true);
-            }
-
-            viewHolder.mButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //my_goods 數據存儲
-                    join(position);
-                    myAdapter.notifyDataSetChanged();
-                }
-            });
             //已經添加活動
 
             return convertView;
@@ -144,16 +137,16 @@ public class join_actions extends AppCompatActivity {
     }
 //買商品--》database：my_goods
 
-    private void join( final int position) {
+    private void join(final int position) {
         int cash2 = 0;
         //查詢
         Cursor cursor;
         try {
-            cursor = db.query("Businesstable", new String[]{"id","username","password","email","cash"}, "username = ?", new String[]{personList.get(position).getAction_business()}, null, null, null, null);
+            cursor = db.query("Businesstable", new String[]{"id", "username", "password", "email", "cash"}, "username = ?", new String[]{personList.get(position).getAction_business()}, null, null, null, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 cash2 = cursor.getInt(cursor.getColumnIndex("cash"));
-                Log.e("ok", "對方現金為"+cash2);
+                Log.e("ok", "對方現金為" + cash2);
             }
             if (cursor != null) {
                 cursor.close();
@@ -161,7 +154,7 @@ public class join_actions extends AppCompatActivity {
         } catch (SQLException e) {
             Log.e("出錯誤", "queryDatas" + e.toString());
         }
-        if (cash2-personList.get(position).getAction_package()>=0) {
+        if (cash2 - personList.get(position).getAction_package() >= 0) {
             ContentValues values = new ContentValues();
             values.put("cash", getIntent().getIntExtra("cash", 0) + personList.get(position).getAction_package());
             db.update("usertable", values, "username=?", new String[]{getIntent().getStringExtra("username")});
@@ -187,19 +180,16 @@ public class join_actions extends AppCompatActivity {
             contentValues.put("username", getIntent().getStringExtra("username"));
             contentValues.put("active_name", personList.get(position).getAction_name());
             db.insert("action_member", null, contentValues);
-            isclicked=false;
             Toast.makeText(join_actions.this, "已經加入活動，請準時參加", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(join_actions.this, "對方錢不足，活動無法參加", Toast.LENGTH_SHORT).show();
+            personList.remove(position);
+        } else {
+            Toast.makeText(join_actions.this, "對方的錢不足，活動無法參加", Toast.LENGTH_SHORT).show();
         }
     }
 
 
-
-
-
     class ViewHolder {
-        private  TextView txt_publish;
+        private TextView txt_publish;
         private TextView txt_name;
         private TextView txt_package;
         private TextView txt_describe;
@@ -221,7 +211,7 @@ public class join_actions extends AppCompatActivity {
             int active_award = cursor.getInt(3);
             String describe = cursor.getString(4);
             String date = cursor.getString(5);
-            Actions person = new Actions(publisher_name, active_name, active_award, describe,date);
+            Actions person = new Actions(publisher_name, active_name, active_award, describe, date);
             personList.add(person);
         }
     }

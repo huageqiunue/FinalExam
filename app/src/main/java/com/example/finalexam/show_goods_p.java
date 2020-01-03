@@ -52,11 +52,10 @@ public class show_goods_p extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(show_goods_p.this, "Click item" + position, Toast.LENGTH_SHORT).show();
                 Goods p = personList.get(position);
-                new AlertDialog.Builder(show_goods_p.this).setTitle("商品信息").setMessage(p.getGoods_describe())
+                new AlertDialog.Builder(show_goods_p.this).setTitle("商品信息").setMessage(p.getGoods_describe()+"購買時間為"+p.getData())
                         .setPositiveButton("關閉" ,new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finish();
                             }
                         }).show();
             }
@@ -129,13 +128,14 @@ public class show_goods_p extends AppCompatActivity {
                 "(id integer primary key autoincrement,username text,publisher_name text,goodsname text,goodsprice int,describe text)";
      */
     public void Query() {
-        Cursor cursor = db.query("my_goods", new String[]{"publisher_name","goodsname","goodsprice","describe"}, "username = ?", new String[]{getIntent().getStringExtra("username")}, null, null, null, null);
+        Cursor cursor = db.query("my_goods", new String[]{"publisher_name","goodsname","goodsprice","describe","date"}, "username = ?", new String[]{getIntent().getStringExtra("username")}, null, null, null, null);
         while (cursor.moveToNext()) {
             String publisher_name = cursor.getString(cursor.getColumnIndex("publisher_name"));
             String goodsname = cursor.getString(cursor.getColumnIndex("goodsname"));
             int goodsprice = cursor.getInt(cursor.getColumnIndex("goodsprice"));
             String describe = cursor.getString(cursor.getColumnIndex("describe"));
-            Goods person = new Goods(publisher_name, goodsname, goodsprice, describe);
+            String date = cursor.getString(cursor.getColumnIndex("date"));
+            Goods person = new Goods(publisher_name, goodsname, goodsprice, describe,date);
             personList.add(person);
         }
     }

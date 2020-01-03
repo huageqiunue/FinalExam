@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class my_action_b extends AppCompatActivity {
         System.out.println(username);
         String message=serach(username);
         show_member=(TextView)findViewById(R.id.member);
+        show_member.setMovementMethod(ScrollingMovementMethod.getInstance());
         show_member.setText(message);
     }
     public String serach(String name){
@@ -54,12 +56,32 @@ public class my_action_b extends AppCompatActivity {
                         if (cursor1 != null && cursor1.getCount() > 0) {
                             while (cursor1.moveToNext()) {
                                 user = cursor1.getString(cursor1.getColumnIndex("username"));
-                                sb.append("用戶" + user + "\n");
+                                sb.append("用戶-->" + user + "\n");
                             }
-                        } else if (cursor1 == null) {
-                            cursor1.close();
+                            sb.append("\n\n");
                         }
-            }else if (cursor != null){
+                        while (cursor.moveToNext()){
+                            active_name = cursor.getString(cursor.getColumnIndex("active_name"));
+                            describe = cursor.getString(cursor.getColumnIndex("describe"));
+                            date = cursor.getInt(cursor.getColumnIndex("date"));
+                            sb.append("活動名稱：" + active_name + "\n");
+                            sb.append("活動時間：" + date + "\n");
+                            sb.append("活動詳情：" + describe + "\n\n");
+                            sb.append("以下是成員信息：\n");
+                            System.out.println("ok now");
+                            cursor1 = db.query("action_member", new String[]{"id","username","active_name"}, "active_name=?", new String[]{active_name}, null, null, null);
+                            if (cursor1 != null && cursor1.getCount() > 0) {
+                                while (cursor1.moveToNext()) {
+                                    user = cursor1.getString(cursor1.getColumnIndex("username"));
+                                    sb.append("用戶-->" + user + "\n");
+                                }
+                            }
+                        }
+                if (cursor1 != null){
+                    cursor1.close();
+                }
+            }
+            if (cursor != null){
                 cursor.close();
             }
 

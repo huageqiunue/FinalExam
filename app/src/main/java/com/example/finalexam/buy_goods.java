@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class buy_goods extends AppCompatActivity {
@@ -57,7 +58,7 @@ public class buy_goods extends AppCompatActivity {
                         .setPositiveButton("關閉" ,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        dialog.cancel();
                     }
                 }).show();
             }
@@ -118,7 +119,6 @@ public class buy_goods extends AppCompatActivity {
                 public void onClick(View v) {
                     //my_goods 數據存儲
                     buy(position);
-
                     myAdapter.notifyDataSetChanged();
                 }
             });
@@ -160,6 +160,7 @@ public class buy_goods extends AppCompatActivity {
             contentValues5.put("you", personList.get(position).getGoods_business());
             contentValues5.put("goodsname", personList.get(position).getGoods_name());
             contentValues5.put("goodsprice", personList.get(position).getGoods_price());
+            contentValues5.put("date", String.valueOf(new Date()));
             db.insert("goods_message", null, contentValues5);
 
             //在goods表中刪除商品
@@ -172,6 +173,7 @@ public class buy_goods extends AppCompatActivity {
             contentValues.put("goodsname", personList.get(position).getGoods_name());
             contentValues.put("goodsprice", personList.get(position).getGoods_price());
             contentValues.put("describe", personList.get(position).getGoods_describe());
+            contentValues.put("date", String.valueOf(new Date()));
             db.insert("my_goods", null, contentValues);
             personList.remove(position);
             Toast.makeText(buy_goods.this, "已經購買,交易成功", Toast.LENGTH_SHORT).show();

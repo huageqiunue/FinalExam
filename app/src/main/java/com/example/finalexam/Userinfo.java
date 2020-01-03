@@ -101,6 +101,7 @@ public class Userinfo extends AppCompatActivity {
                 Intent intent=new Intent(Userinfo.this,my_action.class);
                 intent.putExtra("username",username);
                 intent.putExtra("isbusiness",false);
+                intent.putExtra("cash",cash1);
                 startActivityForResult(intent,1);
             }
         });

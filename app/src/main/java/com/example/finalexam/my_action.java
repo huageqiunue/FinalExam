@@ -56,7 +56,7 @@ public class my_action extends AppCompatActivity {
                         .setPositiveButton("關閉" ,new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finish();
+
                             }
                         }).show();
             }
@@ -134,7 +134,7 @@ public class my_action extends AppCompatActivity {
         int cash2 = 0;
         //查詢
         Cursor cursor;
-        if (getIntent().getIntExtra("cash", 0) - personList.get(position).getAction_package() >= 0) {
+        if (getIntent().getIntExtra("cash",0) - personList.get(position).getAction_package() >= 0) {
             try {
                 cursor = db.query("Businesstable", new String[]{"id", "username", "password", "email", "cash"}, "username = ?", new String[]{personList.get(position).getAction_business()}, null, null, null, null);
                 if (cursor != null && cursor.getCount() > 0) {
@@ -155,9 +155,8 @@ public class my_action extends AppCompatActivity {
             values2.put("cash", cash2 + personList.get(position).getAction_package());
             db.update("Businesstable", values2, "username=?", new String[]{personList.get(position).getAction_business()});
             db.delete("action_member", "username=? and active_name=?", new String[]{getIntent().getStringExtra("username"), personList.get(position).getAction_name()});
-            join_actions.isclicked = false;
             personList.remove(position);
-            Toast.makeText(my_action.this, "活動已經取消", Toast.LENGTH_SHORT).show();
+            Toast.makeText(my_action.this, "活動已經取消,不可再參加", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(my_action.this, "活動無法取消，你的現金不夠", Toast.LENGTH_SHORT).show();
         }
@@ -189,29 +188,36 @@ public class my_action extends AppCompatActivity {
             cursor.moveToFirst();
              active_name_get = cursor.getString(cursor.getColumnIndex("active_name"));
              username_get = cursor.getString(cursor.getColumnIndex("username"));
-        }else if (cursor!=null){
-            cursor.close();
-        }
-        Cursor cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
-        if (cursor1 != null && cursor1.getCount() > 0) {
-            cursor1.moveToFirst();
-            String publisher_name = cursor1.getString(cursor1.getColumnIndex("publisher_name"));
-            String active_name = cursor1.getString(cursor1.getColumnIndex("active_name"));
-            int active_award = cursor1.getInt(cursor1.getColumnIndex("active_award"));
-            String describe = cursor1.getString(cursor1.getColumnIndex("describe"));
-            String date = cursor1.getString(cursor1.getColumnIndex("date"));
-            Actions actions = new Actions(publisher_name, active_name, active_award, describe, date);
-            personList.add(actions);
-            while (cursor1.moveToNext()) {
-                 publisher_name = cursor1.getString(cursor1.getColumnIndex("publisher_name"));
-                 active_name = cursor1.getString(cursor1.getColumnIndex("active_name"));
-                 active_award = cursor1.getInt(cursor1.getColumnIndex("active_award"));
-                 describe = cursor1.getString(cursor1.getColumnIndex("describe"));
-                 date = cursor1.getString(cursor1.getColumnIndex("date"));
-                 actions = new Actions(publisher_name, active_name, active_award, describe, date);
+            Cursor cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
+            if (cursor1 != null && cursor1.getCount() > 0) {
+                cursor1.moveToFirst();
+                String publisher_name = cursor1.getString(cursor1.getColumnIndex("publisher_name"));
+                String active_name = cursor1.getString(cursor1.getColumnIndex("active_name"));
+                int active_award = cursor1.getInt(cursor1.getColumnIndex("active_award"));
+                String describe = cursor1.getString(cursor1.getColumnIndex("describe"));
+                String date = cursor1.getString(cursor1.getColumnIndex("date"));
+                Actions actions = new Actions(publisher_name, active_name, active_award, describe, date);
                 personList.add(actions);
-            }
+             while (cursor.moveToNext()){
+                 active_name_get = cursor.getString(cursor.getColumnIndex("active_name"));
+                 username_get = cursor.getString(cursor.getColumnIndex("username"));
+                  cursor1 = db.query("active", new String[]{"id","publisher_name","active_name","active_award","describe","date"}, "active_name = ?", new String[]{active_name_get}, null, null, null, null);
+                 if (cursor1 != null && cursor1.getCount() > 0) {
+                     cursor1.moveToFirst();
+                      publisher_name = cursor1.getString(cursor1.getColumnIndex("publisher_name"));
+                      active_name = cursor1.getString(cursor1.getColumnIndex("active_name"));
+                      active_award = cursor1.getInt(cursor1.getColumnIndex("active_award"));
+                      describe = cursor1.getString(cursor1.getColumnIndex("describe"));
+                      date = cursor1.getString(cursor1.getColumnIndex("date"));
+                      actions = new Actions(publisher_name, active_name, active_award, describe, date);
+                     personList.add(actions);
+             }
+        }
+        }
+         if (cursor!=null){
+            cursor.close();
         }
         cursor1.close();
     }
+}
 }
