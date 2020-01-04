@@ -154,15 +154,19 @@ public class join_actions extends AppCompatActivity {
         } catch (SQLException e) {
             Log.e("出錯誤", "queryDatas" + e.toString());
         }
-        if (cash2 - personList.get(position).getAction_package() >= 0) {
-            ContentValues values = new ContentValues();
-            values.put("cash", getIntent().getIntExtra("cash", 0) + personList.get(position).getAction_package());
-            db.update("usertable", values, "username=?", new String[]{getIntent().getStringExtra("username")});
-            ContentValues values2 = new ContentValues();
-            values2.put("cash", cash2 - personList.get(position).getAction_package());
-            db.update("Businesstable", values2, "username=?", new String[]{personList.get(position).getAction_business()});
+        Cursor cursor2 = db.query("action_member", new String[]{"username", "active_name"}, "username = ? and active_name=?", new String[]{getIntent().getStringExtra("username"), personList.get(position).getAction_name()}, null, null, null, null);
+        if (cursor2 != null && cursor2.getCount() > 0) {
+            Toast.makeText(join_actions.this, "已經參加過活動了", Toast.LENGTH_SHORT).show();
+        } else {
+            if (cash2 - personList.get(position).getAction_package() >= 0) {
+                ContentValues values = new ContentValues();
+                values.put("cash", getIntent().getIntExtra("cash", 0) + personList.get(position).getAction_package());
+                db.update("usertable", values, "username=?", new String[]{getIntent().getStringExtra("username")});
+                ContentValues values2 = new ContentValues();
+                values2.put("cash", cash2 - personList.get(position).getAction_package());
+                db.update("Businesstable", values2, "username=?", new String[]{personList.get(position).getAction_business()});
 
-            //插入進business消息記錄
+                //插入進business消息記錄
         /*
          String action_message="create table action_message"+
                 "(id integer primary key autoincrement,publisher_name text,active_name text,active_award int,describe text,date text)";
@@ -175,17 +179,18 @@ public class join_actions extends AppCompatActivity {
 //        contentValues5.put("date", personList.get(position).getTime());
 //        db.insert("action_message",null,contentValues5);
 
-            //插入活動成員表
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("username", getIntent().getStringExtra("username"));
-            contentValues.put("active_name", personList.get(position).getAction_name());
-            db.insert("action_member", null, contentValues);
-            Toast.makeText(join_actions.this, "已經加入活動，請準時參加", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(join_actions.this, "對方的錢不足，活動無法參加", Toast.LENGTH_SHORT).show();
+                //插入活動成員表
+
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("username", getIntent().getStringExtra("username"));
+                contentValues.put("active_name", personList.get(position).getAction_name());
+                db.insert("action_member", null, contentValues);
+                Toast.makeText(join_actions.this, "已經加入活動，請準時參加", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(join_actions.this, "對方的錢不足，活動無法參加", Toast.LENGTH_SHORT).show();
+            }
         }
     }
-
 
     class ViewHolder {
         private TextView txt_publish;

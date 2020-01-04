@@ -130,7 +130,7 @@ public class my_action extends AppCompatActivity {
 
     }
 
-    private void dele( final int position) {
+    private void dele(  int position) {
         int cash2 = 0;
         //查詢
         Cursor cursor;
@@ -156,7 +156,7 @@ public class my_action extends AppCompatActivity {
             db.update("Businesstable", values2, "username=?", new String[]{personList.get(position).getAction_business()});
             db.delete("action_member", "username=? and active_name=?", new String[]{getIntent().getStringExtra("username"), personList.get(position).getAction_name()});
             personList.remove(position);
-            Toast.makeText(my_action.this, "活動已經取消,不可再參加", Toast.LENGTH_SHORT).show();
+            Toast.makeText(my_action.this, "活動已經取消", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(my_action.this, "活動無法取消，你的現金不夠", Toast.LENGTH_SHORT).show();
         }

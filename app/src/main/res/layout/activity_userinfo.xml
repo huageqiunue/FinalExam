@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -96,16 +95,16 @@
 
         <Button
             android:id="@+id/scan_Qrcode"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@drawable/shape"
             android:textSize="30dp"
             android:text="掃描二維碼" />
 
         <Button
             android:id="@+id/buy_goods"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@drawable/shape"
             android:text="買商品"
             android:textSize="30dp"
@@ -113,8 +112,8 @@
 
         <Button
             android:id="@+id/join_action"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@drawable/shape"
             android:text="參加活動"
             android:textSize="30dp"
@@ -122,8 +121,8 @@
 
         <Button
             android:id="@+id/my_action"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@drawable/shape"
             android:text="我的活動"
             android:textSize="30dp"
@@ -132,8 +131,8 @@
 
         <Button
             android:id="@+id/show_message"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@drawable/shape"
             android:text="交易信息"
             android:textSize="30dp"
@@ -141,8 +140,8 @@
 
         <Button
             android:id="@+id/show_goods_person"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@drawable/shape"
             android:text="我的商品"
             android:textSize="30dp"

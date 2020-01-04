@@ -96,7 +96,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
-                android:text="輸入郵箱："
+                android:text="聯係電話："
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -104,7 +104,7 @@
                 android:id="@+id/edit_email"
                 android:layout_width="220dp"
                 android:layout_height="40dp"
-                android:password="true"
+                android:password="false"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
